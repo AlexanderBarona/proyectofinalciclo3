@@ -34,10 +34,7 @@ router.get('/addventa', (req, res)=>{
         });
 
     } else{
-        const nuevaVenta= new Ven({nombreCliente,
-            nId,
-            valorTotal,
-            state});
+        const nuevaVenta= new Ven({nombreCliente, nId, valorTotal, state});
         await nuevaVenta.save();
         req.flash('success_msg','Producto Creado Satisfactoriamente');
         res.redirect('/listado');
