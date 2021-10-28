@@ -52,7 +52,7 @@ if (errors.length >0) {
     const newUser = new User({nombre, email, password});
     newUser.password = await newUser.encryptPassword(password);
     await newUser.save();
-    req.flash('success_msg', 'Usuario registrado con éxito');
+    
     res.redirect('/users/signin');
 
 }
@@ -79,7 +79,7 @@ router.post('/users/nuevousr', async (req, res)=>{
 router.get('/listuser',  async(req, res)=>{
     
     const listausr = await User.find().lean();
-        
+    req.flash('success_msg', 'Usuario Registrado Satisfactoriamente');   
       res.render('users/listausuarios', { listausr });
      
     });
@@ -94,7 +94,7 @@ res.render('users/edituser',{useramod});
     router.put('/users/edituser/:id', async (req, res)=> {
         const {nombre, email, password, rol, estado}= req.body;
         await User.findByIdAndUpdate(req.params.id, {nombre, email, password, rol, estado});
-        req.flash('success_msg', 'Usuario Editaco Satisfactoriamente');
+        req.flash('success_msg', 'Usuario Editado Satisfactoriamente');
         res.redirect('users/listuser');
     });
     
