@@ -12,7 +12,7 @@ require('./database');
 require('./config/passport');
 
 //Settings
-app.set('port', process.env.PORT || 80);
+app.set('port', process.env.PORT || 3000);
 app.set('views',path.join(__dirname,'views'));
 app.engine('.hbs',exphbs({
 defaultLayout: 'main' ,
@@ -50,6 +50,7 @@ res.locals.user = req.user || null;
 app.use(require('./routes/index'));
 app.use(require('./routes/users'));
 app.use(require('./routes/prods'));
+app.use(require('./routes/vent'));
 
 //Static Files
 
